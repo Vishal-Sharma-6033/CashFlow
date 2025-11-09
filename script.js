@@ -160,6 +160,84 @@
 //   renderTransactions();
 // }
 
+/* ===== Protection wrapper: paste at the top of script.js ===== */
+(function () {
+  // disable right click
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+
+  // disable copy / cut / paste events globally (except inputs are allowed to type)
+  ['copy', 'cut', 'paste'].forEach(evt => {
+    document.addEventListener(evt, function (e) {
+      // allow inside inputs and textareas
+      const tag = e.target && e.target.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+      e.preventDefault();
+    });
+  });
+
+  // block selection start (allow on inputs)
+  document.addEventListener('selectstart', function (e) {
+    const tag = e.target && e.target.tagName;
+    if (tag !== 'INPUT' && tag !== 'TEXTAREA') e.preventDefault();
+  });
+
+  // block common developer tools shortcuts
+  document.addEventListener('keydown', function (e) {
+    const key = e.key.toUpperCase();
+    if (
+      key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && (key === 'I' || key === 'J')) ||
+      (e.ctrlKey && (key === 'U' || key === 'S'))
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      // optional UX feedback:
+      showBlockedToast();
+    }
+  });
+
+  // prevent dragging images or anchors
+  document.addEventListener('dragstart', function (e) {
+    e.preventDefault();
+  });
+
+  // mobile long-press prevention: if touch longer than 600ms, cancel
+  let touchStart = 0;
+  document.addEventListener('touchstart', function (e) { touchStart = Date.now(); }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    const dt = Date.now() - touchStart;
+    if (dt >= 600) {
+      e.preventDefault();
+      showBlockedToast();
+    }
+  });
+
+  // small toast to give user quick feedback when blocked
+  function showBlockedToast() {
+    if (document.getElementById('blocked-toast')) return;
+    const t = document.createElement('div');
+    t.id = 'blocked-toast';
+    t.textContent = 'Action blocked';
+    Object.assign(t.style, {
+      position: 'fixed',
+      bottom: '80px',
+      left: '50%',
+      transform: 'translateX(-50%)',
+      background: 'rgba(0,0,0,0.75)',
+      color: '#fff',
+      padding: '8px 12px',
+      borderRadius: '8px',
+      zIndex: 10001,
+      fontSize: '13px',
+      pointerEvents: 'none'
+    });
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 900);
+  }
+})();
+/* ===== End protection wrapper ===== */
 
 let people = JSON.parse(localStorage.getItem("people")) || [];
 
