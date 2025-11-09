@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Ledger</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header><h2>💰CashFlow💰</h2></header>
+
+  <section class="summary">
+    <div class="card"><h3>Money Given</h3><p id="totalGiven">₹0</p></div>
+    <div class="card"><h3>Money Received</h3><p id="totalReceived">₹0</p></div>
+    <div class="card net"><h3>Net Balance</h3><p id="netBalance">₹0</p></div>
+  </section>
+
+  <main>
+    <h3>People</h3>
+    <div id="peopleList" class="people"></div>
+  </main>
+
+  <button class="add-btn" id="addPersonBtn">+ Add Person</button>
+
+  <!-- Add Person Modal -->
+  <div class="modal" id="personModal">
+    <div class="modal-content">
+      <h3>Add Person</h3>
+      <input type="text" id="personName" placeholder="Name" />
+      <button id="savePerson">Save</button>
+      <button class="cancel">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

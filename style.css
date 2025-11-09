@@ -1,0 +1,272 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #eef2f3, #ffffff);
+  color: #222;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  overflow-x: hidden;
+}
+
+/* 💰 Header */
+header {
+  background: linear-gradient(135deg, #00a884, #007c65);
+  color: #fff;
+  text-align: center;
+  padding: 16px 10px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* 📊 Summary Section */
+.summary {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+}
+
+.card {
+  flex: 1;
+  min-width: 120px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 18px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(240, 240, 240, 0.8);
+  transition: all 0.3s ease;
+}
+.card:hover { transform: translateY(-4px); }
+
+.card h3 {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.card p { font-size: 20px; font-weight: 700; color: #007c65; }
+.card.net { background: linear-gradient(135deg, #defce4, #eafef3); color: #1b4332; }
+
+/* 👥 People List */
+main h3 { padding: 0 18px; font-size: 18px; margin-top: 10px; color: #333; }
+.people { padding: 14px 18px; }
+
+.person {
+  background: #fff;
+  border: 1px solid rgba(230, 230, 230, 0.8);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
+.person:hover { background: #f8fffc; transform: scale(1.01); }
+.person h4 { font-size: 16px; font-weight: 600; color: #111; }
+.person small { font-size: 13px; color: #777; }
+.balance { font-weight: 700; font-size: 16px; }
+.balance.positive { color: #2a9d8f; }
+.balance.negative { color: #d62828; }
+
+/* ➕ Add Person Button */
+.add-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(135deg, #00a884, #007c65);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
+  z-index: 20;
+}
+.add-btn:hover { transform: translateY(-3px); background: linear-gradient(135deg, #00c98f, #00996f); }
+
+/* 🪟 Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 18px;
+  padding: 24px;
+  width: 90%; max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex; flex-direction: column; gap: 10px;
+  animation: popup 0.25s ease;
+}
+@keyframes popup { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.modal-content h3 { text-align: center; color: #007c65; margin-bottom: 8px; }
+
+.modal-content input, .modal-content select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+.modal-content button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#savePerson, #saveTxn { background: linear-gradient(135deg, #00a884, #007c65); color: white; }
+.cancel { background: #f0f0f0; color: #333; }
+
+/* 🔙 Back & Add Transaction Button */
+.back, .small-btn {
+  background: #fff;
+  color: #007c65;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: 0.2s;
+  z-index: 50;
+  position: relative;
+}
+.back:hover, .small-btn:hover { background: #e0fff3; }
+
+/* Header layout for person screen */
+header.person-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* 💳 Transaction */
+.transactions {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.txn {
+  background: #fff;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s ease;
+}
+.txn:hover { transform: scale(1.01); }
+
+.txn .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Amount (Left) */
+.txn .amount {
+  font-size: 17px;
+  font-weight: 700;
+  color: #d62828;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Time (Center) */
+.txn .time {
+  /* flex: 1; */
+  /* text-align: center; */
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* Delete Button (Right) */
+.txn .delete-btn {
+  background: linear-gradient(135deg, #ff4d4d, #e03131);
+  border: none;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.txn .delete-btn:hover {
+  background: linear-gradient(135deg, #ff6b6b, #e63939);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Note (Below) */
+.txn .note {
+  font-size: 16px;
+  color: #333;
+  margin-top: 6px;
+  padding-left: 2px;
+}
+
+/* 🗑️ Delete Person */
+.delete-person-container {
+  text-align: right;
+  padding: 10px 16px;
+}
+.delete-person {
+  background: #ff5252;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 20;
+  position: relative;
+}
+.delete-person:hover { background: #e03131; }
+
+/* 📱 Responsive */
+@media (max-width: 600px) {
+  .add-btn { padding: 12px 18px; font-size: 14px; }
+  .delete-person { width: 100%; }
+  .txn .time { font-size: 12px; }
+}

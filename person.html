@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Person Transactions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="person-header">
+    <button class="back" id="backBtn">← Back</button>
+    <h2 id="personName">Person</h2>
+    <button id="addTxnBtn" class="small-btn">+ Add</button>
+  </header>
+
+  <div class="delete-person-container">
+    <button id="deletePersonBtn" class="delete-person">🗑️ Delete Person</button>
+  </div>
+
+  <section class="transactions" id="txnList"></section>
+
+  <!-- Add Transaction Modal -->
+  <div class="modal" id="txnModal">
+    <div class="modal-content">
+      <h3>Add Transaction</h3>
+      <select id="txnType">
+        <option value="given">Money Given</option>
+        <option value="received">Money Received</option>
+      </select>
+      <input type="number" id="txnAmount" placeholder="Amount (₹)" />
+      <input type="text" id="txnNote" placeholder="Note (optional)" />
+      <input type="datetime-local" id="txnDateTime" />
+      <button id="saveTxn">Add</button>
+      <button class="cancel">Cancel</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
