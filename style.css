@@ -36,21 +36,6 @@ input, textarea {
 /* Hide selection highlight if anything is accidentally selected */
 ::selection { background: transparent !important; color: inherit !important; }
 
-/* Subtle watermark showing ownership (low opacity) */
-body::before {
-  content: "© Vishal Sharma — Demo App";
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-25deg);
-  font-size: 28px;
-  opacity: 0.05;
-  color: #000;
-  pointer-events: none;
-  z-index: 9999;
-  white-space: nowrap;
-}
-
 
 /* 💰 Header */
 header {
