@@ -14,6 +14,44 @@ body {
   overflow-x: hidden;
 }
 
+/* ===== Protection: disable selection + watermark ===== */
+/* Disable text selection and long-press menus globally */
+* {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-drag: none !important;
+}
+
+/* Allow editing/selecting inside input/textarea only */
+input, textarea {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+/* Hide selection highlight if anything is accidentally selected */
+::selection { background: transparent !important; color: inherit !important; }
+
+/* Subtle watermark showing ownership (low opacity) */
+body::before {
+  content: "© Vishal Sharma — Demo App";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 28px;
+  opacity: 0.05;
+  color: #000;
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+
 /* 💰 Header */
 header {
   background: linear-gradient(135deg, #00a884, #007c65);
