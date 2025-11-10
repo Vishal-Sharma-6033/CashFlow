@@ -408,7 +408,13 @@ if (document.getElementById("txnList")) {
           div.className = "txn";
           div.innerHTML = `
             <div class="top">
-              <div class="amount ${t.type}">${t.type === "given" ? "↑" : "↓"} ₹${t.amount}</div>
+              <div class="amount ${t.type}">
+  ${t.type === "given"
+    ? '<span class="up">↑</span>'
+    : '<span class="down">↓</span>'
+  } ₹${t.amount}
+</div>
+
               <div class="time">${new Date(t.dateTime).toLocaleTimeString([], {
                 hour: "2-digit",
                 minute: "2-digit",
