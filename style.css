@@ -228,6 +228,15 @@ header.person-header {
   flex-shrink: 0;
 }
 
+.up {
+  color: red; /* or your choice */
+}
+
+.down {
+  color: green;
+}
+
+
 /* Time (Center) */
 .txn .time {
   /* flex: 1; */
